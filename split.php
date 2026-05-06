@@ -123,7 +123,7 @@ $expenses = [
         'paid_for'    => 'all',
     ],
     [
-        'description' => 'Orval',
+        'description' => 'Drank',
         'amount'      => 33.00,
         'paid_by'     => 'Torben Vdv',
         'paid_for'    => $drinkers,
