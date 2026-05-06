@@ -156,7 +156,7 @@ $expenses = [
         'description' => 'BBQ vlees & vis',
         'amount'      => 178.00,
         'paid_by'     => 'Bert',
-        'paid_for'    => array_values(array_diff(array_keys($people), ['Melissa'])),
+        'paid_for'    => array_values(array_diff(array_keys($people), ['Melissa', 'Lani'])),
     ],
     [
         'description' => 'Benzine Rahi',
