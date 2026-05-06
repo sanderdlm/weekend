@@ -710,6 +710,6 @@ ob_start();
 </html>
 <?php
 $html = ob_get_clean();
-$outFile = __DIR__ . '/split.html';
+$outFile = __DIR__ . '/index.html';
 file_put_contents($outFile, $html);
 echo "✅ Written to $outFile\n";
