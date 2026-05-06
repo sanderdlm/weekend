@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekend Split</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #202124;
+    --paper: #ffffff;
+    --border: #e0e0e0;
+    --header-bg: #f8f9fa;
+    --hover: #f1f3f4;
+    --muted: #5f6368;
+    --red: #e8590c;
+    --green: #1e8e3e;
+    --blue: #1a73e8;
+    --font: 'Roboto', -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 400;
+    background: #ffffff;
+    color: var(--ink);
+    padding: 24px;
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  /* ── Header ── */
+  .header {
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header h1 {
+    font-family: 'Google Sans Text', var(--font);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .header .meta {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .meta strong { color: var(--ink); font-weight: 500; }
+
+  /* ── Sections ── */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  /* ── Tables ── */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 7px 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+    font-weight: 400;
+    vertical-align: middle;
+  }
+  th {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border);
+  }
+  td:first-child, th:first-child { text-align: left; white-space: nowrap; }
+  tbody tr:hover { background: var(--hover); }
+
+  .num { font-variant-numeric: tabular-nums; }
+  .dim { color: #dadce0; }
+  .neg { color: var(--red); }
+  .pos { color: var(--green); }
+  .zero { color: var(--muted); }
+
+  .total-row td {
+    font-weight: 500;
+    background: var(--header-bg);
+    border-top: 2px solid #dadce0;
+  }
+
+  /* ── Avg line ── */
+  .avg-line {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .avg-line strong { color: var(--ink); }
+
+  /* ── Settlements ── */
+  .settlements-grid {
+    max-width: 420px;
+  }
+  .settle-row {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .settle-row:last-child { border-bottom: none; }
+  .settle-from { min-width: 100px; }
+  .settle-arrow {
+    color: var(--muted);
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  .settle-to { flex: 1; }
+  .settle-amount {
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Breakdown bold cols ── */
+  #breakdownTable td:nth-last-child(1) {
+    font-weight: 500;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── Responsive ── */
+  .scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (max-width: 700px) {
+    body { padding: 12px; }
+    .header h1 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Weekend Split</h1>
+  <div class="meta">
+    <span><strong>18</strong> personen</span>
+    <span><strong>3</strong> nachten</span>
+    <span>Totaal <strong>€2.961,71</strong></span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Uitgaven</div>
+  <table>
+    <thead>
+      <tr><th>Wat</th><th>Bedrag</th><th>Betaald door</th><th>Voor</th></tr>
+    </thead>
+    <tbody>
+          <tr>
+        <td>Huis</td>
+        <td class="num">€920,55</td>
+        <td>Bram</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>Rando Rail</td>
+        <td class="num">€200,00</td>
+        <td>Torben P</td>
+        <td class="num">16</td>
+      </tr>
+          <tr>
+        <td>Pizza's do</td>
+        <td class="num">€84,00</td>
+        <td>Thomas</td>
+        <td class="num">7</td>
+      </tr>
+          <tr>
+        <td>Stokbrood</td>
+        <td class="num">€5,60</td>
+        <td>Thomas</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>Benzine Caddy</td>
+        <td class="num">€50,00</td>
+        <td>Sander</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>IJs</td>
+        <td class="num">€25,00</td>
+        <td>Isha</td>
+        <td class="num">16</td>
+      </tr>
+          <tr>
+        <td>Degage</td>
+        <td class="num">€129,36</td>
+        <td>Nina</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>Orval</td>
+        <td class="num">€33,00</td>
+        <td>Torben Vdv</td>
+        <td class="num">15</td>
+      </tr>
+          <tr>
+        <td>Boodschappen</td>
+        <td class="num">€748,56</td>
+        <td>Torben P</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>Drank</td>
+        <td class="num">€228,85</td>
+        <td>Torben P</td>
+        <td class="num">15</td>
+      </tr>
+          <tr>
+        <td>Benzine Bert</td>
+        <td class="num">€38,00</td>
+        <td>Bert</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>BBQ groenten & boodschappen</td>
+        <td class="num">€154,00</td>
+        <td>Bert</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>BBQ vlees & vis</td>
+        <td class="num">€178,00</td>
+        <td>Bert</td>
+        <td class="num">17</td>
+      </tr>
+          <tr>
+        <td>Benzine Rahi</td>
+        <td class="num">€75,00</td>
+        <td>Rahi</td>
+        <td class="num">18</td>
+      </tr>
+          <tr>
+        <td>Paddenstoelen</td>
+        <td class="num">€60,00</td>
+        <td>Nina</td>
+        <td class="num">4</td>
+      </tr>
+          <tr>
+        <td>Benzine Micra</td>
+        <td class="num">€31,79</td>
+        <td>Melissa</td>
+        <td class="num">18</td>
+      </tr>
+        </tbody>
+    <tfoot>
+      <tr class="total-row">
+        <td>Totaal</td>
+        <td class="num">€2.961,71</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-label">Kostenverdeling</div>
+  <div class="avg-line">Gem. per persoon: <strong>€164,54</strong> · Gem. per persoon per dag: <strong>€54,85</strong></div>
+  <div class="scroll-wrap">
+    <table id="breakdownTable">
+      <thead>
+        <tr>
+          <th>Naam</th>
+                      <th>Huis</th>
+                      <th>Rando Rail</th>
+                      <th>Pizza's do</th>
+                      <th>Stokbrood</th>
+                      <th>Benzine Caddy</th>
+                      <th>IJs</th>
+                      <th>Degage</th>
+                      <th>Orval</th>
+                      <th>Boodschappen</th>
+                      <th>Drank</th>
+                      <th>Benzine Bert</th>
+                      <th>BBQ groenten & boodschappen</th>
+                      <th>BBQ vlees & vis</th>
+                      <th>Benzine Rahi</th>
+                      <th>Paddenstoelen</th>
+                      <th>Benzine Micra</th>
+                    <th>Verschuldigd</th>
+          <th>Betaald</th>
+          <th>Balans</th>
+        </tr>
+      </thead>
+      <tbody>
+              <tr>
+          <td>Nina <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num">12,50</td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num">15,00</td>
+                      <td class="num">1,77</td>
+                    <td class="num">203,20</td>
+          <td class="num">189,36</td>
+          <td class="num neg">-13,84</td>
+        </tr>
+              <tr>
+          <td>Len <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num">12,50</td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num">15,00</td>
+                      <td class="num">1,77</td>
+                    <td class="num">203,20</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-203,20</td>
+        </tr>
+              <tr>
+          <td>Melissa <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num">12,50</td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">4,17</td>
+                      <td class="num">15,00</td>
+                      <td class="num">1,77</td>
+                    <td class="num">192,73</td>
+          <td class="num">31,79</td>
+          <td class="num neg">-160,94</td>
+        </tr>
+              <tr>
+          <td>Torben P <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num">12,50</td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">188,20</td>
+          <td class="num">1.177,41</td>
+          <td class="num pos">989,21</td>
+        </tr>
+              <tr>
+          <td>Thomas <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num">12,50</td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">188,20</td>
+          <td class="num">89,60</td>
+          <td class="num neg">-98,60</td>
+        </tr>
+              <tr>
+          <td>Idania <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">174,14</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-174,14</td>
+        </tr>
+              <tr>
+          <td>Bram <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">12,00</td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">174,14</td>
+          <td class="num">920,55</td>
+          <td class="num pos">746,41</td>
+        </tr>
+              <tr>
+          <td>Bert <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num">15,00</td>
+                      <td class="num">1,77</td>
+                    <td class="num">169,29</td>
+          <td class="num">370,00</td>
+          <td class="num pos">200,71</td>
+        </tr>
+              <tr>
+          <td>Dries <span class="dim">(3 nachten)</span></td>
+                      <td class="num">65,75</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">41,59</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">158,75</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-158,75</td>
+        </tr>
+              <tr>
+          <td>Torben Vdv <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">154,29</td>
+          <td class="num">33,00</td>
+          <td class="num neg">-121,29</td>
+        </tr>
+              <tr>
+          <td>Elsa <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">154,29</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-154,29</td>
+        </tr>
+              <tr>
+          <td>Lani <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">154,29</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-154,29</td>
+        </tr>
+              <tr>
+          <td>Rahi <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">154,29</td>
+          <td class="num">75,00</td>
+          <td class="num neg">-79,29</td>
+        </tr>
+              <tr>
+          <td>Libby <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">154,29</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-154,29</td>
+        </tr>
+              <tr>
+          <td>Sander <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">41,59</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">136,83</td>
+          <td class="num">50,00</td>
+          <td class="num neg">-86,83</td>
+        </tr>
+              <tr>
+          <td>Valerie <span class="dim">(2 nachten)</span></td>
+                      <td class="num">43,84</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">41,59</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">136,83</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-136,83</td>
+        </tr>
+              <tr>
+          <td>Isha <span class="dim">(1 nacht)</span></td>
+                      <td class="num">21,92</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">132,37</td>
+          <td class="num">25,00</td>
+          <td class="num neg">-107,37</td>
+        </tr>
+              <tr>
+          <td>Stan <span class="dim">(1 nacht)</span></td>
+                      <td class="num">21,92</td>
+                      <td class="num">12,50</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">0,31</td>
+                      <td class="num">2,78</td>
+                      <td class="num">1,56</td>
+                      <td class="num">7,19</td>
+                      <td class="num">2,20</td>
+                      <td class="num">41,59</td>
+                      <td class="num">15,26</td>
+                      <td class="num">2,11</td>
+                      <td class="num">8,56</td>
+                      <td class="num">10,47</td>
+                      <td class="num">4,17</td>
+                      <td class="num"><span class="dim">&middot;</span></td>
+                      <td class="num">1,77</td>
+                    <td class="num">132,37</td>
+          <td class="num"><span class="dim">&middot;</span></td>
+          <td class="num neg">-132,37</td>
+        </tr>
+            </tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td>Totaal</td>
+                      <td class="num">920,55</td>
+                      <td class="num">200,00</td>
+                      <td class="num">84,00</td>
+                      <td class="num">5,60</td>
+                      <td class="num">50,00</td>
+                      <td class="num">25,00</td>
+                      <td class="num">129,36</td>
+                      <td class="num">33,00</td>
+                      <td class="num">748,56</td>
+                      <td class="num">228,85</td>
+                      <td class="num">38,00</td>
+                      <td class="num">154,00</td>
+                      <td class="num">178,00</td>
+                      <td class="num">75,00</td>
+                      <td class="num">60,00</td>
+                      <td class="num">31,79</td>
+                    <td class="num">2.961,71</td>
+          <td class="num">2.961,71</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Verrekeningen</div>
+  <div class="settlements-grid">
+          <div class="settle-row">
+        <span class="settle-from">Len</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;203,20</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Idania</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;174,14</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Melissa</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;160,94</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Dries</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;158,75</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Elsa</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;154,29</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Lani</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;154,29</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Libby</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;154,29</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Valerie</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;136,83</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Stan</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;132,37</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Torben Vdv</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bert</span>
+        <span class="settle-amount">&euro;121,29</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Isha</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;107,37</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Thomas</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;98,60</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Sander</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bert</span>
+        <span class="settle-amount">&euro;79,42</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Sander</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;7,41</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Rahi</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Torben P</span>
+        <span class="settle-amount">&euro;47,22</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Rahi</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;32,07</span>
+      </div>
+          <div class="settle-row">
+        <span class="settle-from">Nina</span>
+        <span class="settle-arrow">&rarr;</span>
+        <span class="settle-to">Bram</span>
+        <span class="settle-amount">&euro;13,84</span>
+      </div>
+      </div>
+</div>
+
+<div class="footer">Generated 6 May 2026, 10:04</div>
+
+</body>
+</html>
